@@ -1,0 +1,100 @@
+server:
+  port: 8080
+  undertow:
+    threads:
+      io: 2
+      worker: 16
+    max-http-post-size: -1B
+    buffer-size: 16KB
+    direct-buffers: on
+  shutdown: graceful
+  servlet:
+    session:
+      timeout: 60m
+      cookie:
+        http-only: true
+    application-display-name: datagen
+  error:
+    whitelabel:
+      enabled: false
+
+spring:
+  application:
+    name: datagen
+  main:
+    lazy-initialization: true
+    web-application-type: servlet
+    banner-mode: off
+  jackson:
+    time-zone: UTC
+    locale: en_US
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: "jdbc:postgresql://localhost:5432/datagen?currentSchema=datagen"
+    username: "postgres"
+    password: "postgres"
+    hikari:
+      connection-timeout: 1000
+      pool-name: "hikari-pool"
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    url: "jdbc:postgresql://localhost:5432/datagen"
+    user: "postgres"
+    password: "postgres"
+    connect-retries: 3
+    schemas: "datagen"
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: deferred
+  jpa:
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    hibernate:
+      ddl-auto: none
+    generate-ddl: false
+    properties:
+      hibernate:
+        default_schema: "datagen"
+        jdbc:
+          batch_size: 25
+        order_inserts: false
+    show-sql: false
+  mvc:
+    format:
+      date: iso
+      date-time: iso
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+  servlet:
+    multipart:
+      enabled: false
+
+management:
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoint:
+    health:
+      enabled: true
+      probes:
+        enabled: true
+      show-components: never
+      show-details: never
+      group:
+        readiness:
+          include: readinessState, db
+    metrics.enabled: true
+    prometheus.enabled: true
+  endpoints.web.exposure.include: "*"
+  metrics.export.prometheus.enabled: true
+
+logging.level:
+  ROOT: info
+  by.vk.datagen: info
+  org.springframework: info

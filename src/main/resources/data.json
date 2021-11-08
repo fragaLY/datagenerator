@@ -1,0 +1,35 @@
+{
+  "count": 1000,
+  "body": {
+    "fields": [
+      {
+        "name": "name",
+        "type": "FunnyName"
+      },
+      {
+        "name": "birthday",
+        "type": "DateAndTime"
+      },
+      {
+        "name": "age",
+        "type": "Number"
+      },
+      {
+        "name": "address",
+        "type": "Address"
+      },
+      {
+        "name": "demographic",
+        "type": "Demographic"
+      },
+      {
+        "name": "nation",
+        "type": "Nation"
+      },
+      {
+        "name": "phone",
+        "type": "PhoneNumber"
+      }
+    ]
+  }
+}
