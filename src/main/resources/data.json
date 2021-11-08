@@ -19,6 +19,10 @@
         "type": "Address"
       },
       {
+        "name": "phone",
+        "type": "PhoneNumber"
+      },
+      {
         "name": "demographic",
         "type": "Demographic"
       },
@@ -27,8 +31,8 @@
         "type": "Nation"
       },
       {
-        "name": "phone",
-        "type": "PhoneNumber"
+        "name": "signal",
+        "type": "Signal"
       }
     ]
   }

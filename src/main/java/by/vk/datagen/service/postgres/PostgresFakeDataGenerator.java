@@ -2,6 +2,7 @@ package by.vk.datagen.service.postgres;
 
 import by.vk.datagen.data.meta.DataDefinition;
 import by.vk.datagen.data.postgres.Data;
+import by.vk.datagen.data.postgres.DataHolder;
 import by.vk.datagen.service.util.BsonElementUtil;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public record PostgresFakeDataGenerator(BsonElementUtil util) {
     for (long index = RANGE_START_INDEX; index < rangeEndIndex; index++) {
       var elements = new ArrayList<String>();
       fields.forEach(it -> elements.add(util.create(it)));
-      data.add(new Data(elements));
+      data.add(new Data(new DataHolder(elements)));
     }
     return data;
   }

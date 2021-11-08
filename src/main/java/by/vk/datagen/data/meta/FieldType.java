@@ -12,6 +12,7 @@ public enum FieldType {
   NAME("Name"),
   NATION("Nation"),
   NUMBER("Number"),
+  SIGNAL("Signal"),
   PHONE_NUMBER("PhoneNumber");
 
   private final String name;

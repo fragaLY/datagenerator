@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.ZonedDateTime;
-import java.util.List;
 import java.util.Objects;
 
 @Table(schema = "datagen", name = "data")
@@ -19,11 +18,11 @@ public class Data {
 
   public Data() {}
 
-  public Data(List<String> fields) {
-    this.data = fields;
+  public Data(DataHolder data) {
+    this.data = data;
   }
 
-  public Data(Long id, List<String> data, ZonedDateTime created) {
+  public Data(Long id, DataHolder data, ZonedDateTime created) {
     this.id = id;
     this.data = data;
     this.created = created;
@@ -35,7 +34,7 @@ public class Data {
 
   @Column(columnDefinition = "jsonb")
   @Type(type = "jsonb")
-  public List<String> data;
+  public DataHolder data;
 
   @CreationTimestamp public ZonedDateTime created;
 
@@ -47,11 +46,11 @@ public class Data {
     this.id = id;
   }
 
-  public List<String> getData() {
+  public DataHolder getData() {
     return data;
   }
 
-  public void setData(List<String> data) {
+  public void setData(DataHolder data) {
     this.data = data;
   }
 
