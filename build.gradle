@@ -57,8 +57,8 @@ jib {
     to {
         image = "datagen"
         auth {
-            artifactory_username = "fragaly"
-            artifactory_password = "89c7ed1c-93b8-48fe-b8cc-ecd49553634e"
+            artifactory_username = "username"
+            artifactory_password = "password"
         }
         tags = ["$version", "latest"]
     }
